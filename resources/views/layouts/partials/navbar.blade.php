@@ -3,6 +3,13 @@
                         <a href="/">
                             <img href="/" src="/pics/logo.png" alt="logo" style="width:6rem;">
                         </a>
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link {{ (Route::current()->getName() == 'articles.index') ? 'active' : '' }}" href="{{ route('articles.index') }}">Articles
+                                    <span class="visually-hidden">(current)</span>
+                                </a>
+                            </li>
+                        </ul>
                         <div class="flex items-right lg:order-2">
                             @auth
                             <div style="display: flex; align-items: center;">
