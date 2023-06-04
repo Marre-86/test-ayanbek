@@ -15,6 +15,7 @@
                     <th scope="col" style="width:50%">Name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Created At</th>
+                    <th scope="col">Comments</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +27,7 @@
                         <td>{{ $article->name }}</td>
                         <td>{{ $article->price }}</td>
                         <td>{{ $article->created_at }}</td>
+                        <td>{{ $article->comments->count() }}</td>
                     </tr>
                     @php $counter++; @endphp
                 @endforeach

@@ -18,7 +18,7 @@
                 @include('layouts.partials.navbar')
             </header>
 
-            <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 2500)">
+            <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 2000)">
                 @if (session()->has('flash_notification'))               
                     <div style="z-index: 3; position: absolute; top: 10%; left: 40%;  width: 30%; text-align: center;">
                         @include('flash::message')

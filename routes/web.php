@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,7 @@ Route::post('/logout', [Logoutcontroller::class, 'destroy'])
     ->middleware('auth')->name('logout');
 
 Route::resource('articles', ArticleController::class);
+
+Route::resource('comments', CommentController::class);
+
+Route::resource('comments', CommentController::class)->only(['store'])->middleware('can:write-comments');

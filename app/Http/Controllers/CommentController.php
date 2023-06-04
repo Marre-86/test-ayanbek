@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
-class ArticleController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $articles = Article::paginate(10);
-
-        return view('articles.index', compact('articles'));
+        //
     }
 
     /**
@@ -30,22 +28,31 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        $comment = new Comment();
+
+        $data = $this->validate($request, [
+            'article_id' => 'integer',
+            'text' => 'nullable|max:400']);
+        $comment->fill($data);
+        $comment->fio = auth()->user()->name;
+        $comment->save();
+
+        flash("Your comment has been succesfully added!")->success();
         return back();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Article $article)
+    public function show(Comment $comment)
     {
-        $order = Article::findOrFail($article->id);
-        return view('articles.show', ['article' => $article]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Article $article)
+    public function edit(Comment $comment)
     {
         //
     }
@@ -53,7 +60,7 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -61,7 +68,7 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Article $article)
+    public function destroy(Comment $comment)
     {
         //
     }

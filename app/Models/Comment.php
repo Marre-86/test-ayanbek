@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class Article extends Model
+class Comment extends Model
 {
     use HasFactory;
 
-    public function comments()
+    protected $fillable = ['text', 'article_id'];
+
+    public function article()
     {
-         return $this->hasMany('App\Models\Comment', 'article_id');
+        return $this->belongsTo('App\Models\Article');
     }
 
     protected function createdAt(): Attribute
